@@ -23,7 +23,7 @@ def run(queue):
     fn = queue.get()
     print str(fn)+ "in run"
     for i in xrange(10):
-        with open(fn,'a',0)as fd:
+        with open(fn,'a')as fd:
             fd.write(str(i))
             fd.flush()
         
@@ -33,6 +33,7 @@ if __name__ == "__main__":
     queue = Queue()
     fn = "temp.txt"
 
+    queue.put(fn)
     queue.put(fn)
     print "file just put"
     q = Process(target = tail, args = (queue,))
